@@ -1,7 +1,8 @@
 # Brew & Bloom — Smart Café Ordering & Management System
 
 > Coursework Project: **ICT 3131 — Web Technologies**  
-> Status: **Slice 4 Complete (Checkout, Order Placement & Order History)** — Branch: `feature/ordering`
+> Status: **Final Project Complete & Presentation-Ready** — Branch: `main`  
+> Presentation Date: **28 October 2026**
 
 Brew & Bloom is a responsive, database-backed café web application built with semantic HTML5, custom vanilla CSS3, vanilla JavaScript, PHP, and MongoDB Atlas.
 
@@ -14,7 +15,7 @@ Brew & Bloom is a responsive, database-backed café web application built with s
 - **Database:** MongoDB Atlas (Cloud Cluster: `brew_and_bloom`).
 - **Communication:** Native Fetch API exchanging structured JSON (`{ success, data, message, errors }`).
 - **Cart Management:** Persistent client-side cart stored in `localStorage` under key `brew_bloom_cart`. Line items indexed by a deterministic hash of product ID and sorted customization options.
-- **Order Engine:** Server-verified pricing and options validation, unique human-readable order references (`BB-YYYYMMDD-XXXX`), checkout idempotency protection, immutable item snapshots, and real-time Fetch polling for active preparation stages.
+- **Order Engine:** Server-verified pricing and options validation, unique human-readable order references (`BB-YYYYMMDD-XXXX`), checkout idempotency protection, immutable item snapshots, and clear 4-stage order preparation status display.
 - **Security Boundaries:** Only `/public` is exposed as the web document root. Secrets, database configuration (`/config`), seeding scripts (`/database`), and vendor dependencies reside securely outside the public root.
 
 ---
@@ -37,7 +38,7 @@ Brew&Bloom/
 │   ├── product.html            # Standalone product customization & detail view
 │   ├── cart.html               # Dedicated shopping cart page & order summary
 │   ├── checkout.html           # Accessible pickup checkout & authoritative price verification
-│   ├── orders.html             # Customer order history & real-time preparation tracker
+│   ├── orders.html             # Customer order history & preparation status view
 │   ├── login.html              # Customer & Admin sign-in page with return redirect support
 │   ├── register.html           # Customer registration page with return redirect support
 │   ├── account.html            # Member portal & server-side RBAC verification
@@ -62,14 +63,15 @@ Brew&Bloom/
 │   │   ├── cart.js             # Reusable cart storage engine & badge dispatcher
 │   │   ├── cart-page.js        # Cart view manager (steppers, removals, clear cart modal)
 │   │   ├── checkout.js         # Checkout controller, authoritative quote & idempotency
-│   │   ├── orders.js           # Live order tracking (4-step progress stepper & polling)
+│   │   ├── orders.js           # Order history controller (card rendering & 4-step progress stepper)
 │   │   ├── product-page.js     # Standalone product page customizer controller
 │   │   └── auth.js             # Accessible form validation & RBAC verification
 │   └── assets/
 │       └── images/             # 14 curated high-resolution café assets
 ├── docs/
 │   ├── prd.md                  # Converted Product Requirements Document
-│   └── proposal.md             # Converted Coursework Project Proposal
+│   ├── proposal.md             # Converted Coursework Project Proposal
+│   └── presentation_notes.md   # Presentation script, viva questions & demo split
 ├── .env.example                # Sanitized environment template
 ├── .gitignore                  # Git ignore rules (.env, vendor, etc.)
 ├── composer.json               # PHP backend dependencies
