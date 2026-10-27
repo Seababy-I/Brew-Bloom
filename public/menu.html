@@ -37,11 +37,11 @@
                     <li><a href="index.html" class="nav-link">Home</a></li>
                     <li><a href="menu.html" class="nav-link active" aria-current="page">Menu</a></li>
                     <li><a href="index.html#about" class="nav-link">Our Story</a></li>
-                    <li><a href="index.html#visit" class="nav-link">Visit Us</a></li>
-                    <li id="nav-auth-slot" style="display:contents;">
+                    <li><a href="cart.html" class="nav-link nav-cart-link" aria-label="Shopping Cart"><span aria-hidden="true">🛒</span> Cart <span class="nav-cart-badge" style="display:none;">0</span></a></li>
+                    <span id="nav-auth-slot" style="display:contents;">
                         <li><a href="login.html" class="nav-link">Sign In</a></li>
                         <li><a href="register.html" class="btn btn-secondary" style="padding: 6px 14px; font-size: 0.8125rem;">Register</a></li>
-                    </li>
+                    </span>
                 </ul>
             </nav>
         </div>
@@ -191,7 +191,19 @@
         </div>
     </footer>
 
+    <!-- Customizer Modal Backdrop & Dialog -->
+    <div id="customizer-modal" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="customizer-modal-title" hidden>
+        <div class="modal-card">
+            <button type="button" class="modal-close-btn" id="customizer-close-btn" aria-label="Close product customization modal">&times;</button>
+            <div id="customizer-modal-content">
+                <!-- Dynamically populated by BrewCustomizer -->
+            </div>
+        </div>
+    </div>
+
     <script src="js/main.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/customizer.js"></script>
     <script src="js/menu.js"></script>
 </body>
 </html>

@@ -1,7 +1,7 @@
 # Brew & Bloom — Smart Café Ordering & Management System
 
 > Coursework Project: **ICT 3131 — Web Technologies**  
-> Status: **Slice 2 Complete (Authentication & Role-Based Access Control)**
+> Status: **Slice 3 Complete (Product Customization & Shopping Cart)** — Branch: `feature/ordering`
 
 Brew & Bloom is a responsive, database-backed café web application built with semantic HTML5, custom vanilla CSS3, vanilla JavaScript, PHP, and MongoDB Atlas.
 
@@ -13,6 +13,7 @@ Brew & Bloom is a responsive, database-backed café web application built with s
 - **Backend:** PHP 8.5 with `mongodb/mongodb` driver client library and `vlucas/phpdotenv`.
 - **Database:** MongoDB Atlas (Cloud Cluster: `brew_and_bloom`).
 - **Communication:** Native Fetch API exchanging structured JSON (`{ success, data, message, errors }`).
+- **Cart Management:** Persistent client-side cart stored in `localStorage` under key `brew_bloom_cart`. Line items indexed by a deterministic hash of product ID and sorted customization options.
 - **Security Boundaries:** Only `/public` is exposed as the web document root. Secrets, database configuration (`/config`), seeding scripts (`/database`), and vendor dependencies reside securely outside the public root.
 
 ---
@@ -30,12 +31,15 @@ Brew&Bloom/
 │   └── AuthService.php         # Session management, CSRF validation & RBAC guards
 ├── public/                     # Web Document Root
 │   ├── index.html              # Homepage with hero, features & story
-│   ├── menu.html               # Dynamic interactive café menu
+│   ├── menu.html               # Dynamic interactive café menu & customizer modal
+│   ├── product.html            # Standalone product customization & detail view
+│   ├── cart.html               # Dedicated shopping cart page & order summary
 │   ├── login.html              # Customer & Admin sign-in page
 │   ├── register.html           # Customer registration page
 │   ├── account.html            # Member portal & server-side RBAC verification
 │   ├── api/
-│   │   ├── products.php        # Public JSON endpoint (GET /api/products.php)
+│   │   ├── products.php        # Products list endpoint (GET /api/products.php)
+│   │   ├── product.php         # Single product endpoint (GET /api/product.php?id=...|?slug=...)
 │   │   └── auth/
 │   │       ├── csrf.php        # CSRF token endpoint (GET /api/auth/csrf.php)
 │   │       ├── register.php    # Customer registration (POST /api/auth/register.php)
@@ -44,10 +48,14 @@ Brew&Bloom/
 │   │       ├── me.php          # Session profile (GET /api/auth/me.php)
 │   │       └── admin-check.php # Protected test endpoint (GET /api/auth/admin-check.php)
 │   ├── css/
-│   │   └── style.css           # Global WCAG AA compliant design system
+│   │   └── style.css           # Global WCAG AA compliant design system & cart/modal styling
 │   ├── js/
 │   │   ├── main.js             # Shared navigation, auth sync, and accessibility
-│   │   ├── menu.js             # Async menu search, filtering & rendering
+│   │   ├── menu.js             # Async menu search, filtering & modal customizer trigger
+│   │   ├── customizer.js       # Accessible product option builder & price calculator
+│   │   ├── cart.js             # Reusable cart storage engine & badge dispatcher
+│   │   ├── cart-page.js        # Cart view manager (steppers, removals, clear cart modal)
+│   │   ├── product-page.js     # Standalone product page customizer controller
 │   │   └── auth.js             # Accessible form validation & RBAC verification
 │   └── assets/
 │       └── images/             # 14 curated high-resolution café assets
@@ -168,6 +176,18 @@ Returns products according to optional search and category filters.
   }
   ```
 
+### `GET /api/product.php`
+
+Retrieves a single product document including all available customization dimensions (sizes, milks, sweetness, warming, extras).
+
+- **Query Parameters:**
+  - `id`: 24-character hexadecimal MongoDB ObjectId
+  - `slug`: Product slug string (e.g. `signature-espresso`, `hazelnut-velvet-latte`)
+- **Responses:**
+  - `200 OK`: Product found and returned.
+  - `400 Bad Request`: Missing identifier or invalid 24-character ObjectId format.
+  - `404 Not Found`: No available product found matching the given identifier.
+
 ### Authentication & RBAC APIs
 
 - **`GET /api/auth/csrf.php`**: Retrieves a cryptographically secure CSRF token for the session.
@@ -181,10 +201,11 @@ Returns products according to optional search and category filters.
 
 ## Testing & Verification
 
-Run the complete Slice 2 automated test suite (16 tests covering CSRF, registration, duplicates, sessions, customer/admin login, RBAC restrictions, and catalog integrity):
+### Slice 3 Automated Verification Suite
+Run the 18 automated test cases covering single product lookups (slug and ObjectId), error codes (400/404), list queries, deterministic cart option hashing, live price calculations, customer session authentication, and RBAC regression:
 
 ```powershell
-python C:\Users\priyali\.gemini\antigravity-ide\brain\15a06ac6-d8b0-4a64-bcae-73da7f8b768e\scratch\test_slice2_auth.py
+python C:\Users\priyali\.gemini\antigravity-ide\brain\15a06ac6-d8b0-4a64-bcae-73da7f8b768e\scratch\verify_slice3_e2e.py
 ```
 
 ---

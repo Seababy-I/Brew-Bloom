@@ -211,6 +211,17 @@
 
         const cardsHtml = products.map((product) => createProductCardHtml(product)).join('');
         productsGrid.innerHTML = cardsHtml;
+
+        // Attach customizer button click handlers
+        productsGrid.querySelectorAll('.btn-open-customizer').forEach((btn) => {
+            btn.addEventListener('click', () => {
+                const prodId = btn.getAttribute('data-product-id');
+                const prod = state.products.find((p) => p.id === prodId);
+                if (prod && window.BrewCustomizer) {
+                    window.BrewCustomizer.openForProduct(prod, btn);
+                }
+            });
+        });
     }
 
     function createProductCardHtml(product) {
@@ -263,7 +274,15 @@
                         <div class="product-price">
                             <small>INR</small> ₹${Number(product.priceINR).toLocaleString('en-IN')}
                         </div>
-                        <span class="badge badge-sage" aria-label="Status: Available in store">Fresh Daily</span>
+                        <button 
+                            type="button" 
+                            class="btn btn-primary btn-sm btn-open-customizer" 
+                            data-product-id="${escapeHtml(product.id)}"
+                            aria-haspopup="dialog"
+                            aria-label="Customize and order ${escapeHtml(product.name)}"
+                        >
+                            Customize &amp; Order
+                        </button>
                     </div>
                 </div>
             </article>

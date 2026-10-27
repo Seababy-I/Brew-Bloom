@@ -81,4 +81,35 @@ class ProductService
             'options' => isset($data['options']) ? json_decode(json_encode($data['options']), true) : [],
         ];
     }
+    /**
+     * Retrieves a single available product by its 24-character hex ObjectId or slug.
+     *
+     * @param string $identifier
+     * @return array<string, mixed>|null
+     */
+    public static function getProductByIdOrSlug(string $identifier): ?array
+    {
+        $cleanId = trim($identifier);
+        if ($cleanId === '') {
+            return null;
+        }
+
+        $db = getDatabase();
+        $collection = $db->selectCollection('products');
+
+        $filter = ['available' => true];
+
+        if (preg_match('/^[a-f\d]{24}$/i', $cleanId)) {
+            $filter['_id'] = new \MongoDB\BSON\ObjectId($cleanId);
+        } else {
+            $filter['slug'] = $cleanId;
+        }
+
+        $doc = $collection->findOne($filter);
+        if ($doc === null) {
+            return null;
+        }
+
+        return self::formatProductDocument($doc);
+    }
 }
