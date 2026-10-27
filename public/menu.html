@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Explore our seasonal collection of artisanal single-origin coffee, Himalayan teas, and hearth-baked French pastries.">
+    <title>The Café Menu — Brew & Bloom</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Keyboard Skip Link -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Site Header & Navigation -->
+    <header class="site-header" role="banner">
+        <div class="container header-inner">
+            <a href="index.html" class="brand" aria-label="Brew and Bloom Home">
+                <span class="brand-icon" aria-hidden="true">B</span>
+                <div>
+                    <span class="brand-name">Brew &amp; Bloom</span>
+                    <span class="brand-tagline">Craft Coffee &amp; Bakehouse</span>
+                </div>
+            </a>
+
+            <button 
+                type="button" 
+                class="nav-toggle-btn" 
+                aria-label="Open navigation menu" 
+                aria-expanded="false" 
+                aria-controls="primary-nav"
+            >
+                &#9776;
+            </button>
+
+            <nav id="primary-nav" class="nav" aria-label="Primary site navigation">
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="menu.html" class="nav-link active" aria-current="page">Menu</a></li>
+                    <li><a href="index.html#about" class="nav-link">Our Story</a></li>
+                    <li><a href="index.html#visit" class="nav-link">Visit Us</a></li>
+                    <li><a href="#menu-controls" class="btn btn-secondary">Jump to Filters</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main id="main-content">
+        <!-- Banner Title -->
+        <section class="menu-header-banner" aria-labelledby="menu-main-title">
+            <div class="container">
+                <span class="section-pretitle">Freshly Roasted &amp; Hearth Baked</span>
+                <h1 id="menu-main-title" class="section-title">The Café Menu</h1>
+                <p style="max-width: 620px; margin: 0 auto;">
+                    Every single item is crafted with ethical ingredients, precision brewing ratios, and slow baking methods. Search or filter below to discover your next favorite cup.
+                </p>
+            </div>
+        </section>
+
+        <!-- Menu Interaction Toolbar -->
+        <section class="container" id="menu-controls" aria-labelledby="menu-browse-heading">
+            <div class="menu-toolbar">
+                <h2 id="menu-browse-heading" class="sr-only">Browse Our Collection</h2>
+
+                <!-- Accessible Search Input -->
+                <form class="search-form" role="search" onsubmit="event.preventDefault();" aria-label="Search café menu items">
+                    <label for="menu-search" class="search-label">
+                        Search items by name
+                    </label>
+                    <div class="search-field-group">
+                        <input 
+                            type="search" 
+                            id="menu-search" 
+                            name="q" 
+                            class="search-input" 
+                            placeholder="Type drink or pastry name (e.g. Latte, Matcha, Croissant)..." 
+                            autocomplete="off"
+                            spellcheck="false"
+                        >
+                        <button 
+                            type="button" 
+                            id="search-clear-btn" 
+                            class="search-clear-btn" 
+                            aria-label="Clear search input"
+                        >
+                            &times;
+                        </button>
+                    </div>
+                </form>
+
+                <!-- Category Filter Group -->
+                <div 
+                    class="category-filter-group" 
+                    role="group" 
+                    aria-label="Filter menu items by category"
+                >
+                    <button 
+                        type="button" 
+                        class="category-filter-btn active" 
+                        data-category="all" 
+                        aria-pressed="true"
+                    >
+                        All Categories (12)
+                    </button>
+                    <button 
+                        type="button" 
+                        class="category-filter-btn" 
+                        data-category="coffee" 
+                        aria-pressed="false"
+                    >
+                        ☕ Craft Coffee (4)
+                    </button>
+                    <button 
+                        type="button" 
+                        class="category-filter-btn" 
+                        data-category="tea" 
+                        aria-pressed="false"
+                    >
+                        🌿 Artisanal Tea (4)
+                    </button>
+                    <button 
+                        type="button" 
+                        class="category-filter-btn" 
+                        data-category="bakery" 
+                        aria-pressed="false"
+                    >
+                        🥐 Fresh Bakery (4)
+                    </button>
+                </div>
+            </div>
+
+            <!-- Assistive Screen Reader Notification Area -->
+            <div id="menu-live-region" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+
+            <!-- Empty / Error state container -->
+            <div id="menu-state-message" aria-live="polite"></div>
+
+            <!-- Dynamic Products Grid -->
+            <section aria-label="Menu Items Catalog" style="margin-bottom: 80px;">
+                <div class="products-grid" id="products-grid">
+                    <!-- Cards will be populated by menu.js -->
+                </div>
+            </section>
+        </section>
+    </main>
+
+    <!-- Site Footer -->
+    <footer class="site-footer" role="contentinfo">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <h2 class="footer-brand-title">Brew &amp; Bloom</h2>
+                    <p class="footer-desc">
+                        A mindful culinary space dedicated to honest roasts, botanical tea infusions, and artisanal French baking.
+                    </p>
+                </div>
+
+                <div>
+                    <h3 class="footer-heading">Navigation</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="menu.html">Full Menu</a></li>
+                        <li><a href="index.html#about">About Our Roastery</a></li>
+                        <li><a href="index.html#visit">Location &amp; Hours</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="footer-heading">Service Hours</h3>
+                    <div class="footer-hours-item">
+                        <span>Mon – Fri:</span>
+                        <span>07:00 – 21:00</span>
+                    </div>
+                    <div class="footer-hours-item">
+                        <span>Sat – Sun:</span>
+                        <span>07:30 – 22:00</span>
+                    </div>
+                    <p style="margin-top: 12px; font-size: 0.8125rem; color: var(--color-dark-muted);">
+                        Hearth ovens fired fresh daily at 05:00 AM.
+                    </p>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; <span id="current-year">2026</span> Brew &amp; Bloom. All rights reserved. Web Technologies Coursework.</p>
+                <p>Designed with Semantic HTML5, Vanilla CSS3 &amp; Vanilla JavaScript.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/menu.js"></script>
+</body>
+</html>

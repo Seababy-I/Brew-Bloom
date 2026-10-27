@@ -1,0 +1,13 @@
+# Environment & credentials
+.env
+*.env
+atlas-credentials.env
+!.env.example
+# Dependencies
+/vendor/
+/node_modules/
+# Temporary / build artifacts
+.dist/
+.DS_Store
+Thumbs.db
+*.log
