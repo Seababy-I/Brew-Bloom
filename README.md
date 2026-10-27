@@ -1,7 +1,7 @@
 # Brew & Bloom — Smart Café Ordering & Management System
 
 > Coursework Project: **ICT 3131 — Web Technologies**  
-> Status: **Slice 1 Complete (Project Foundation + Dynamic Café Menu)**
+> Status: **Slice 2 Complete (Authentication & Role-Based Access Control)**
 
 Brew & Bloom is a responsive, database-backed café web application built with semantic HTML5, custom vanilla CSS3, vanilla JavaScript, PHP, and MongoDB Atlas.
 
@@ -26,17 +26,29 @@ Brew&Bloom/
 ├── database/
 │   └── seed.php                # Idempotent database seeder (12 items + 2 users)
 ├── api/
-│   └── ProductService.php      # Internal business logic and query filtering
+│   ├── ProductService.php      # Internal business logic and query filtering
+│   └── AuthService.php         # Session management, CSRF validation & RBAC guards
 ├── public/                     # Web Document Root
 │   ├── index.html              # Homepage with hero, features & story
 │   ├── menu.html               # Dynamic interactive café menu
+│   ├── login.html              # Customer & Admin sign-in page
+│   ├── register.html           # Customer registration page
+│   ├── account.html            # Member portal & server-side RBAC verification
 │   ├── api/
-│   │   └── products.php        # Public JSON endpoint (GET /api/products.php)
+│   │   ├── products.php        # Public JSON endpoint (GET /api/products.php)
+│   │   └── auth/
+│   │       ├── csrf.php        # CSRF token endpoint (GET /api/auth/csrf.php)
+│   │       ├── register.php    # Customer registration (POST /api/auth/register.php)
+│   │       ├── login.php       # Session authentication (POST /api/auth/login.php)
+│   │       ├── logout.php      # Session termination (POST /api/auth/logout.php)
+│   │       ├── me.php          # Session profile (GET /api/auth/me.php)
+│   │       └── admin-check.php # Protected test endpoint (GET /api/auth/admin-check.php)
 │   ├── css/
 │   │   └── style.css           # Global WCAG AA compliant design system
 │   ├── js/
-│   │   ├── main.js             # Shared navigation and accessibility scripts
-│   │   └── menu.js             # Async menu search, filtering & rendering
+│   │   ├── main.js             # Shared navigation, auth sync, and accessibility
+│   │   ├── menu.js             # Async menu search, filtering & rendering
+│   │   └── auth.js             # Accessible form validation & RBAC verification
 │   └── assets/
 │       └── images/             # 14 curated high-resolution café assets
 ├── docs/
@@ -155,6 +167,25 @@ Returns products according to optional search and category filters.
     "errors": []
   }
   ```
+
+### Authentication & RBAC APIs
+
+- **`GET /api/auth/csrf.php`**: Retrieves a cryptographically secure CSRF token for the session.
+- **`POST /api/auth/register.php`**: Registers a customer with validated inputs, password hash, and strictly assigned `customer` role.
+- **`POST /api/auth/login.php`**: Authenticates customers and administrators using `password_verify()` and regenerates the session ID.
+- **`POST /api/auth/logout.php`**: Invalidates the active session and clears the session cookie.
+- **`GET /api/auth/me.php`**: Returns safe profile data for the active user, or `data: null` for guests.
+- **`GET /api/auth/admin-check.php`**: Protected verification endpoint returning `HTTP 200` to administrators, `HTTP 403` to customers, and `HTTP 401` to unauthenticated guests.
+
+---
+
+## Testing & Verification
+
+Run the complete Slice 2 automated test suite (16 tests covering CSRF, registration, duplicates, sessions, customer/admin login, RBAC restrictions, and catalog integrity):
+
+```powershell
+python C:\Users\priyali\.gemini\antigravity-ide\brain\15a06ac6-d8b0-4a64-bcae-73da7f8b768e\scratch\test_slice2_auth.py
+```
 
 ---
 

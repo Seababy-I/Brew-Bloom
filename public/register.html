@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Create a Brew & Bloom customer account to customize drinks, save orders, and track your café pickup requests.">
+    <title>Create an Account — Brew & Bloom</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Keyboard Skip Link -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Site Header & Navigation -->
+    <header class="site-header" role="banner">
+        <div class="container header-inner">
+            <a href="index.html" class="brand" aria-label="Brew and Bloom Home">
+                <span class="brand-icon" aria-hidden="true">B</span>
+                <div>
+                    <span class="brand-name">Brew &amp; Bloom</span>
+                    <span class="brand-tagline">Craft Coffee &amp; Bakehouse</span>
+                </div>
+            </a>
+
+            <button 
+                type="button" 
+                class="nav-toggle-btn" 
+                aria-label="Open navigation menu" 
+                aria-expanded="false" 
+                aria-controls="primary-nav"
+            >
+                &#9776;
+            </button>
+
+            <nav id="primary-nav" class="nav" aria-label="Primary site navigation">
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="menu.html" class="nav-link">Menu</a></li>
+                    <li><a href="index.html#about" class="nav-link">Our Story</a></li>
+                    <li><a href="index.html#visit" class="nav-link">Visit Us</a></li>
+                    <li id="nav-auth-slot" style="display:contents;">
+                        <li><a href="login.html" class="nav-link">Sign In</a></li>
+                        <li><a href="register.html" class="btn btn-secondary active" aria-current="page" style="padding: 6px 14px; font-size: 0.8125rem;">Register</a></li>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main id="main-content">
+        <div class="container auth-wrapper">
+            <article class="auth-card">
+                <div class="auth-header">
+                    <div class="auth-icon" aria-hidden="true">🌱</div>
+                    <h1 class="auth-title">Join Brew &amp; Bloom</h1>
+                    <p class="auth-subtitle">Create a customer account for seamless café ordering</p>
+                </div>
+
+                <!-- Screen Reader Live Region -->
+                <div id="reg-live-region" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+
+                <!-- Form Alert Notice -->
+                <div id="reg-alert" class="form-alert" role="alert"></div>
+
+                <form id="register-form" class="auth-form" novalidate>
+                    <!-- Full Name Input -->
+                    <div class="form-group">
+                        <label for="reg-name" class="form-label">
+                            Full Name <span class="required-marker" aria-label="Required">*</span>
+                        </label>
+                        <input 
+                            type="text" 
+                            id="reg-name" 
+                            name="name" 
+                            class="form-input" 
+                            placeholder="e.g. Priya Sharma" 
+                            required 
+                            aria-required="true"
+                            autocomplete="name"
+                        >
+                        <p class="form-error-text" id="reg-name-error" role="alert"></p>
+                    </div>
+
+                    <!-- Email Input -->
+                    <div class="form-group">
+                        <label for="reg-email" class="form-label">
+                            Email Address <span class="required-marker" aria-label="Required">*</span>
+                        </label>
+                        <input 
+                            type="email" 
+                            id="reg-email" 
+                            name="email" 
+                            class="form-input" 
+                            placeholder="e.g. priya@example.com" 
+                            required 
+                            aria-required="true"
+                            autocomplete="email"
+                        >
+                        <p class="form-error-text" id="reg-email-error" role="alert"></p>
+                    </div>
+
+                    <!-- Password Input -->
+                    <div class="form-group">
+                        <label for="reg-password" class="form-label">
+                            Password <span class="required-marker" aria-label="Required">*</span>
+                        </label>
+                        <div class="input-password-wrapper">
+                            <input 
+                                type="password" 
+                                id="reg-password" 
+                                name="password" 
+                                class="form-input" 
+                                placeholder="Create a secure password" 
+                                required 
+                                aria-required="true"
+                                aria-describedby="reg-pass-hint"
+                                autocomplete="new-password"
+                            >
+                            <button 
+                                type="button" 
+                                class="password-toggle-btn" 
+                                data-target="reg-password" 
+                                aria-label="Show password"
+                            >
+                                Show
+                            </button>
+                        </div>
+                        <span id="reg-pass-hint" class="form-hint">
+                            Must be at least 8 characters long and contain at least one letter and one number.
+                        </span>
+                        <p class="form-error-text" id="reg-password-error" role="alert"></p>
+                    </div>
+
+                    <!-- Confirm Password Input -->
+                    <div class="form-group">
+                        <label for="reg-confirm-password" class="form-label">
+                            Confirm Password <span class="required-marker" aria-label="Required">*</span>
+                        </label>
+                        <div class="input-password-wrapper">
+                            <input 
+                                type="password" 
+                                id="reg-confirm-password" 
+                                name="confirm_password" 
+                                class="form-input" 
+                                placeholder="Re-type your password" 
+                                required 
+                                aria-required="true"
+                                autocomplete="new-password"
+                            >
+                            <button 
+                                type="button" 
+                                class="password-toggle-btn" 
+                                data-target="reg-confirm-password" 
+                                aria-label="Show password"
+                            >
+                                Show
+                            </button>
+                        </div>
+                        <p class="form-error-text" id="reg-confirm-error" role="alert"></p>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit" id="reg-submit-btn" class="btn btn-primary btn-block">
+                        Create Account
+                    </button>
+                </form>
+
+                <div class="auth-footer">
+                    <p>Already have an account? <a href="login.html">Sign in here</a></p>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <!-- Site Footer -->
+    <footer class="site-footer" role="contentinfo">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <h2 class="footer-brand-title">Brew &amp; Bloom</h2>
+                    <p class="footer-desc">
+                        A mindful culinary space dedicated to honest roasts, botanical tea infusions, and artisanal French baking.
+                    </p>
+                </div>
+
+                <div>
+                    <h3 class="footer-heading">Navigation</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="menu.html">Full Menu</a></li>
+                        <li><a href="login.html">Sign In</a></li>
+                        <li><a href="register.html">Register</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="footer-heading">Service Hours</h3>
+                    <div class="footer-hours-item">
+                        <span>Mon – Fri:</span>
+                        <span>07:00 – 21:00</span>
+                    </div>
+                    <div class="footer-hours-item">
+                        <span>Sat – Sun:</span>
+                        <span>07:30 – 22:00</span>
+                    </div>
+                    <p style="margin-top: 12px; font-size: 0.8125rem; color: var(--color-dark-muted);">
+                        Hearth ovens fired fresh daily at 05:00 AM.
+                    </p>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; <span id="current-year">2026</span> Brew &amp; Bloom. All rights reserved. Web Technologies Coursework.</p>
+                <p>Designed with Semantic HTML5, Vanilla CSS3 &amp; Vanilla JavaScript.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/auth.js"></script>
+</body>
+</html>
