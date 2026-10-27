@@ -23,6 +23,15 @@ function runDatabaseSeed(): void
     $productsCollection->createIndex(['slug' => 1], ['unique' => true, 'name' => 'uniq_product_slug']);
     $productsCollection->createIndex(['category' => 1], ['name' => 'idx_product_category']);
 
+    $ordersCollection = $db->selectCollection('orders');
+    $ordersCollection->createIndex(['orderReference' => 1], ['unique' => true, 'name' => 'uniq_order_reference']);
+    $ordersCollection->createIndex(['customerId' => 1, 'createdAt' => -1], ['name' => 'idx_customer_orders']);
+    $ordersCollection->createIndex(
+        ['customerId' => 1, 'idempotencyKey' => 1],
+        ['unique' => true, 'sparse' => true, 'name' => 'uniq_customer_idempotency']
+    );
+    $ordersCollection->createIndex(['status' => 1], ['name' => 'idx_order_status']);
+
     // 2. Seed Users
     echo "Seeding accounts...\n";
     $now = new UTCDateTime();

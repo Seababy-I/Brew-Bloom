@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="View your Brew &amp; Bloom order history and track the live preparation status of your handcrafted café orders.">
+    <title>My Orders — Brew &amp; Bloom</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Accessibility Skip Link -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Header & Navigation -->
+    <header class="header" role="banner">
+        <div class="container header-container">
+            <a href="index.html" class="brand" aria-label="Brew and Bloom Home">
+                <span class="brand-logo" aria-hidden="true">B</span>
+                <span class="brand-text">
+                    <span class="brand-title">Brew &amp; Bloom</span>
+                    <span class="brand-tagline">Craft Coffee &amp; Bakehouse</span>
+                </span>
+            </a>
+
+            <!-- Mobile Navigation Toggle -->
+            <button 
+                type="button" 
+                class="nav-toggle-btn" 
+                aria-label="Open navigation menu" 
+                aria-expanded="false" 
+                aria-controls="primary-nav"
+            >
+                &#9776;
+            </button>
+
+            <nav id="primary-nav" class="nav" aria-label="Primary site navigation">
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="menu.html" class="nav-link">Menu</a></li>
+                    <li><a href="index.html#about" class="nav-link">Our Story</a></li>
+                    <li><a href="cart.html" class="nav-link nav-cart-link" aria-label="Shopping Cart"><span aria-hidden="true">🛒</span> Cart <span class="nav-cart-badge" style="display:none;">0</span></a></li>
+                    <span id="nav-auth-slot" style="display:contents;">
+                        <li><a href="login.html" class="nav-link">Sign In</a></li>
+                        <li><a href="register.html" class="btn btn-secondary" style="padding: 6px 14px; font-size: 0.8125rem;">Register</a></li>
+                    </span>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main id="main-content">
+        <!-- Banner Title -->
+        <section class="menu-header-banner" aria-labelledby="orders-main-title" style="padding: 44px 0 28px;">
+            <div class="container">
+                <span class="section-pretitle">Customer Account</span>
+                <h1 id="orders-main-title" class="section-title">My Orders</h1>
+                <p style="max-width: 600px; margin: 0 auto;">
+                    Review your order history and check the current status of your café orders.
+                </p>
+            </div>
+        </section>
+
+        <!-- Orders Section -->
+        <section class="orders-section container" aria-label="Customer Orders">
+            <!-- Screen Reader Live Announcements for status transitions -->
+            <div id="orders-live-status" class="visually-hidden" aria-live="polite" aria-atomic="true"></div>
+
+            <!-- Orders Container -->
+            <div id="orders-container" class="orders-list">
+                <!-- Injected by JavaScript -->
+                <div style="text-align: center; padding: 60px 20px; color: var(--color-text-muted);">
+                    <div class="spinner" style="width: 32px; height: 32px; margin: 0 auto 16px;" aria-hidden="true"></div>
+                    <p>Loading your orders...</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="brand">
+                        <span class="brand-logo" aria-hidden="true">B</span>
+                        <span class="brand-text">
+                            <span class="brand-title">Brew &amp; Bloom</span>
+                            <span class="brand-tagline">Craft Coffee &amp; Bakehouse</span>
+                        </span>
+                    </div>
+                    <p class="footer-description">
+                        A neighborhood café dedicated to specialty coffee, fresh bakery items, and botanical teas.
+                    </p>
+                </div>
+
+                <div class="footer-nav">
+                    <h2 class="footer-heading">Quick Links</h2>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="menu.html">Full Menu</a></li>
+                        <li><a href="orders.html">My Orders</a></li>
+                        <li><a href="cart.html">Shopping Cart</a></li>
+                        <li><a href="account.html">My Account</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-nav">
+                    <h2 class="footer-heading">Contact &amp; Visit</h2>
+                    <address class="footer-contact">
+                        <p>14 Bloom Lane, Indiranagar</p>
+                        <p>Bengaluru, Karnataka 560038</p>
+                        <p>Phone: <a href="tel:+918045678901">+91 (80) 4567 8901</a></p>
+                        <p>Email: <a href="mailto:hello@brewandbloom.com">hello@brewandbloom.com</a></p>
+                    </address>
+                </div>
+
+                <div class="footer-nav">
+                    <h2 class="footer-heading">Café Hours</h2>
+                    <div class="footer-hours-item">
+                        <span>Mon – Fri:</span>
+                        <span>07:00 – 21:00</span>
+                    </div>
+                    <div class="footer-hours-item">
+                        <span>Sat – Sun:</span>
+                        <span>07:30 – 22:00</span>
+                    </div>
+                    <p style="margin-top: 12px; font-size: 0.8125rem; color: var(--color-dark-muted);">
+                        Fresh bakes prepared every morning.
+                    </p>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; <span id="current-year">2026</span> Brew &amp; Bloom. All rights reserved. Web Technologies Coursework.</p>
+                <p>Designed with Semantic HTML5, Vanilla CSS3 &amp; Vanilla JavaScript.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/orders.js"></script>
+</body>
+</html>

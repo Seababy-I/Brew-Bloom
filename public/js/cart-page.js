@@ -180,17 +180,13 @@
                             </small>
                         </div>
 
-                        <button 
-                            type="button" 
+                        <a 
+                            href="checkout.html" 
                             class="btn btn-primary btn-block btn-checkout-trigger" 
                             id="btn-checkout-notice"
                         >
                             Proceed to Pickup Checkout
-                        </button>
-
-                        <div id="checkout-slice-notice" class="form-alert form-alert-success" style="display:none; margin-top: 16px; font-size: 0.85rem;" role="status">
-                            ✅ <strong>Cart verified and saved!</strong> The server-validated order submission &amp; status tracking features will be enabled in Slice 4.
-                        </div>
+                        </a>
                     </div>
                 </aside>
             </div>
@@ -268,13 +264,11 @@
             });
         }
 
-        // Checkout button informational notice
+        // Checkout button: proceed to checkout page
         const checkoutBtn = document.getElementById('btn-checkout-notice');
-        const checkoutNotice = document.getElementById('checkout-slice-notice');
-        if (checkoutBtn && checkoutNotice) {
+        if (checkoutBtn) {
             checkoutBtn.addEventListener('click', () => {
-                checkoutNotice.style.display = 'block';
-                checkoutNotice.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                window.location.href = 'checkout.html';
             });
         }
     }
