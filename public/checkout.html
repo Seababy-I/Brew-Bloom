@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Finalize your artisanal café pickup order with Brew &amp; Bloom. Select pickup time, review customizations, and confirm your order.">
+    <title>Checkout &amp; Pickup Details — Brew &amp; Bloom</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Accessibility Skip Link -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Header & Navigation -->
+    <header class="header" role="banner">
+        <div class="container header-container">
+            <a href="index.html" class="brand" aria-label="Brew and Bloom Home">
+                <span class="brand-logo" aria-hidden="true">B</span>
+                <span class="brand-text">
+                    <span class="brand-title">Brew &amp; Bloom</span>
+                    <span class="brand-tagline">Craft Coffee &amp; Bakehouse</span>
+                </span>
+            </a>
+
+            <!-- Mobile Navigation Toggle -->
+            <button
+                type="button"
+                class="nav-toggle-btn"
+                aria-label="Open navigation menu"
+                aria-expanded="false"
+                aria-controls="primary-nav"
+            >
+                &#9776;
+            </button>
+
+            <nav id="primary-nav" class="nav" aria-label="Primary site navigation">
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="menu.html" class="nav-link">Menu</a></li>
+                    <li><a href="index.html#about" class="nav-link">Our Story</a></li>
+                    <li><a href="cart.html" class="nav-link nav-cart-link" aria-label="Shopping Cart"><span aria-hidden="true">🛒</span> Cart <span class="nav-cart-badge" style="display:none;">0</span></a></li>
+                    <span id="nav-auth-slot" style="display:contents;">
+                        <li><a href="login.html" class="nav-link">Sign In</a></li>
+                        <li><a href="register.html" class="btn btn-secondary" style="padding: 6px 14px; font-size: 0.8125rem;">Register</a></li>
+                    </span>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main id="main-content">
+        <!-- Banner Title -->
+        <section class="menu-header-banner" aria-labelledby="checkout-main-title" style="padding: 36px 0 24px;">
+            <div class="container">
+                <h1 id="checkout-main-title" class="section-title">Checkout</h1>
+                <p style="max-width: 540px; margin: 0 auto;">
+                    Confirm your contact details and pickup time to place your order.
+                </p>
+            </div>
+        </section>
+
+        <!-- Checkout Form & Summary Section -->
+        <section class="checkout-section container" aria-label="Checkout Process">
+            <!-- Screen Reader Live Status -->
+            <div id="checkout-live-status" class="visually-hidden" aria-live="polite" aria-atomic="true"></div>
+
+            <!-- Top Notification / Alert Container -->
+            <div id="checkout-alert" class="form-alert" style="display: none; margin-bottom: 24px;" role="alert"></div>
+
+            <form id="checkout-form" class="checkout-layout" novalidate>
+                <!-- Left Column: Customer & Pickup Details -->
+                <div class="checkout-main-col">
+                    <!-- 1. Customer Contact Details -->
+                    <fieldset class="checkout-fieldset">
+                        <legend class="checkout-legend">Contact Information</legend>
+
+                        <div class="checkout-form-grid">
+                            <div class="form-group">
+                                <label for="checkout-name" class="form-label">
+                                    Full Name <span class="required-indicator" aria-hidden="true">*</span>
+                                </label>
+                                <input
+                                    type="text"
+                                    id="checkout-name"
+                                    name="customer_name"
+                                    class="form-input"
+                                    required
+                                    autocomplete="name"
+                                    aria-required="true"
+                                    aria-describedby="checkout-name-error"
+                                >
+                                <span id="checkout-name-error" class="field-error-message" role="alert"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="checkout-phone" class="form-label">
+                                    Phone Number <span class="required-indicator" aria-hidden="true">*</span>
+                                </label>
+                                <input
+                                    type="tel"
+                                    id="checkout-phone"
+                                    name="customer_phone"
+                                    class="form-input"
+                                    placeholder="e.g. 9876543210"
+                                    required
+                                    autocomplete="tel"
+                                    aria-required="true"
+                                    aria-describedby="checkout-phone-error"
+                                >
+                                <span id="checkout-phone-error" class="field-error-message" role="alert"></span>
+                            </div>
+
+                            <div class="form-group checkout-form-full">
+                                <label for="checkout-email" class="form-label">
+                                    Email Address <span class="required-indicator" aria-hidden="true">*</span>
+                                </label>
+                                <input
+                                    type="email"
+                                    id="checkout-email"
+                                    name="customer_email"
+                                    class="form-input"
+                                    required
+                                    autocomplete="email"
+                                    aria-required="true"
+                                    aria-describedby="checkout-email-error"
+                                >
+                                <span id="checkout-email-error" class="field-error-message" role="alert"></span>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <!-- 2. Pickup Window & Schedule -->
+                    <fieldset class="checkout-fieldset">
+                        <legend class="checkout-legend">Pickup Details</legend>
+
+                        <div class="form-group">
+                            <label for="checkout-pickup-time" class="form-label">
+                                Preferred Pickup Time <span class="required-indicator" aria-hidden="true">*</span>
+                            </label>
+                            <select id="checkout-pickup-time" name="pickup_time" class="form-input" required aria-required="true">
+                                <option value="asap" selected>ASAP (~15–20 minutes)</option>
+                                <option value="30m">In 30 minutes</option>
+                                <option value="45m">In 45 minutes</option>
+                                <option value="60m">In 1 hour</option>
+                                <option value="90m">In 1.5 hours</option>
+                            </select>
+                            <small class="form-hint" style="margin-top: 6px; display: block; color: var(--color-text-muted);">
+                                Your order will be prepared fresh for your selected time.
+                            </small>
+                        </div>
+
+                        <div class="form-group" style="margin-top: 18px;">
+                            <label for="checkout-instructions" class="form-label">
+                                Special Instructions (Optional)
+                            </label>
+                            <textarea
+                                id="checkout-instructions"
+                                name="special_instructions"
+                                class="form-input"
+                                rows="2"
+                                maxlength="500"
+                                placeholder="Any preparation preferences or allergies..."
+                                aria-describedby="checkout-instructions-hint"
+                            ></textarea>
+                            <small id="checkout-instructions-hint" class="form-hint" style="margin-top: 4px; display: block; color: var(--color-text-muted);">
+                                Maximum 500 characters.
+                            </small>
+                        </div>
+                    </fieldset>
+
+                    <!-- 3. Payment Method -->
+                    <fieldset class="checkout-fieldset">
+                        <legend class="checkout-legend">Payment Method</legend>
+
+                        <div class="payment-method-card">
+                            <div>
+                                <div class="payment-method-title">
+                                    <span>Pay at Counter</span>
+                                    <span class="payment-method-badge">Unpaid</span>
+                                </div>
+                                <p class="payment-method-desc">
+                                    Payment is collected when you pick up your order (Cash, UPI, or Card).
+                                </p>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+
+                <!-- Right Column: Order Summary -->
+                <aside class="checkout-summary-col" aria-label="Order Summary">
+                    <div class="checkout-summary-card">
+                        <h2 class="cart-summary-title">Order Summary</h2>
+
+                        <!-- Items Snapshot Preview -->
+                        <div id="checkout-items-preview" class="checkout-items-preview" aria-label="Items in your order">
+                            <div style="text-align: center; color: var(--color-text-muted); padding: 20px;">
+                                Loading order items...
+                            </div>
+                        </div>
+
+                        <!-- Calculation breakdown -->
+                        <div class="summary-line">
+                            <span id="checkout-subtotal-label">Subtotal</span>
+                            <span id="checkout-subtotal-val">₹0</span>
+                        </div>
+
+                        <div class="summary-line">
+                            <span>Taxes &amp; Packaging</span>
+                            <span class="badge badge-sage" style="font-size:0.75rem;">Included</span>
+                        </div>
+
+                        <div class="summary-line summary-grand-total">
+                            <span>Total Due</span>
+                            <strong class="grand-total-amount" id="checkout-grand-total">₹0</strong>
+                        </div>
+
+                        <!-- Place order submission button -->
+                        <button
+                            type="submit"
+                            id="btn-place-order"
+                            class="btn btn-primary btn-block btn-checkout-trigger"
+                            style="margin-top: 24px;"
+                        >
+                            Place Pickup Order
+                        </button>
+
+                        <div style="margin-top: 16px; text-align: center;">
+                            <a href="cart.html" class="nav-link" style="font-size: 0.875rem;">
+                                &larr; Return to Cart
+                            </a>
+                        </div>
+                    </div>
+                </aside>
+            </form>
+        </section>
+    </main>
+
+    <!-- Order Placement Success Modal -->
+    <div id="order-success-modal" class="modal-backdrop" hidden role="dialog" aria-modal="true" aria-labelledby="modal-success-title">
+        <div class="modal-card order-success-modal">
+            <div class="order-success-icon" aria-hidden="true">✓</div>
+            <h2 id="modal-success-title" style="margin-bottom: 8px;">Order Confirmed!</h2>
+            <p style="color: var(--color-text-muted); font-size: 0.95rem; margin-bottom: 20px;">
+                Your order has been received. Please show your order reference when picking up at the counter.
+            </p>
+
+            <div style="background-color: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius-sm); padding: 18px; margin-bottom: 24px;">
+                <div style="font-size: 0.8125rem; color: var(--color-text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px;">
+                    Order Reference
+                </div>
+                <div id="modal-success-ref" style="font-family: monospace; font-size: 1.4rem; font-weight: 700; color: var(--color-espresso); letter-spacing: 0.05em;">
+                    BB-20261027-0000
+                </div>
+                <div id="modal-success-details" style="font-size: 0.875rem; color: var(--color-text-muted); margin-top: 8px;">
+                    <!-- Injected by JS -->
+                </div>
+            </div>
+
+            <div style="display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;">
+                <a href="orders.html" id="btn-view-tracker" class="btn btn-primary">
+                    View My Orders &rarr;
+                </a>
+                <a href="menu.html" class="btn btn-secondary">
+                    Back to Menu
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="brand">
+                        <span class="brand-logo" aria-hidden="true">B</span>
+                        <span class="brand-text">
+                            <span class="brand-title">Brew &amp; Bloom</span>
+                            <span class="brand-tagline">Craft Coffee &amp; Bakehouse</span>
+                        </span>
+                    </div>
+                    <p class="footer-description">
+                        A neighborhood café dedicated to specialty coffee, fresh bakery items, and botanical teas.
+                    </p>
+                </div>
+
+                <div class="footer-nav">
+                    <h2 class="footer-heading">Quick Links</h2>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="menu.html">Full Menu</a></li>
+                        <li><a href="orders.html">My Orders</a></li>
+                        <li><a href="cart.html">Shopping Cart</a></li>
+                        <li><a href="login.html">Sign In</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-nav">
+                    <h2 class="footer-heading">Contact &amp; Visit</h2>
+                    <address class="footer-contact">
+                        <p>14 Bloom Lane, Indiranagar</p>
+                        <p>Bengaluru, Karnataka 560038</p>
+                        <p>Phone: <a href="tel:+918045678901">+91 (80) 4567 8901</a></p>
+                        <p>Email: <a href="mailto:hello@brewandbloom.com">hello@brewandbloom.com</a></p>
+                    </address>
+                </div>
+
+                <div class="footer-nav">
+                    <h2 class="footer-heading">Café Hours</h2>
+                    <div class="footer-hours-item">
+                        <span>Mon – Fri:</span>
+                        <span>07:00 – 21:00</span>
+                    </div>
+                    <div class="footer-hours-item">
+                        <span>Sat – Sun:</span>
+                        <span>07:30 – 22:00</span>
+                    </div>
+                    <p style="margin-top: 12px; font-size: 0.8125rem; color: var(--color-dark-muted);">
+                        Fresh bakes prepared every morning.
+                    </p>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; <span id="current-year">2026</span> Brew &amp; Bloom. All rights reserved. Web Technologies Coursework.</p>
+                <p>Designed with Semantic HTML5, Vanilla CSS3 &amp; Vanilla JavaScript.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/checkout.js"></script>
+</body>
+</html>

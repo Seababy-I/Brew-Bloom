@@ -118,9 +118,18 @@
 
         if (user) {
             const isAdmin = user.role === 'admin';
+            const path = window.location.pathname;
+            const isOrders = path.endsWith('orders.html');
+            const isAccount = path.endsWith('account.html');
+
             authSlot.innerHTML = `
+                <li>
+                    <a href="orders.html" class="nav-link ${isOrders ? 'active' : ''}" id="nav-orders-link" ${isOrders ? 'aria-current="page"' : ''}>
+                        My Orders
+                    </a>
+                </li>
                 <li class="nav-auth-user">
-                    <a href="account.html" class="nav-link" id="nav-account-link">
+                    <a href="account.html" class="nav-link ${isAccount ? 'active' : ''}" id="nav-account-link" ${isAccount ? 'aria-current="page"' : ''}>
                         ${isAdmin ? '<span class="role-badge role-admin" style="margin-right:6px; font-size:0.7rem; padding: 2px 8px;">Admin</span>' : ''}
                         Account (${escapeHtml(user.name.split(' ')[0])})
                     </a>

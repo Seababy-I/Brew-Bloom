@@ -112,11 +112,17 @@ function initRegisterForm() {
             const result = await response.json();
 
             if (response.ok && result.success) {
-                showAlert(alertBox, 'Registration successful! Redirecting to your account...', 'success');
-                announceLive(liveRegion, 'Registration successful! Redirecting to your account.');
+                showAlert(alertBox, 'Registration successful! Redirecting...', 'success');
+                announceLive(liveRegion, 'Registration successful! Redirecting...');
                 form.reset();
+                const urlParams = new URLSearchParams(window.location.search);
+                const redirectParam = urlParams.get('redirect');
+                let targetUrl = 'account.html';
+                if (redirectParam && /^[\w\-]+\.html$/.test(redirectParam)) {
+                    targetUrl = redirectParam;
+                }
                 setTimeout(() => {
-                    window.location.href = 'account.html';
+                    window.location.href = targetUrl;
                 }, 1200);
             } else {
                 const errorMsg = (result.errors && result.errors.length > 0)
@@ -208,8 +214,14 @@ function initLoginForm() {
             if (response.ok && result.success) {
                 showAlert(alertBox, 'Signed in successfully! Loading your profile...', 'success');
                 announceLive(liveRegion, 'Signed in successfully. Redirecting...');
+                const urlParams = new URLSearchParams(window.location.search);
+                const redirectParam = urlParams.get('redirect');
+                let targetUrl = 'account.html';
+                if (redirectParam && /^[\w\-]+\.html$/.test(redirectParam)) {
+                    targetUrl = redirectParam;
+                }
                 setTimeout(() => {
-                    window.location.href = 'account.html';
+                    window.location.href = targetUrl;
                 }, 1000);
             } else {
                 const errorMsg = result.message || 'Invalid email or password.';
@@ -305,6 +317,10 @@ async function initAccountPage() {
                 <div class="account-detail-item">
                     <span>Member Since</span>
                     <strong>${escapeHtml(memberSince)}</strong>
+                </div>
+                <div class="account-detail-item">
+                    <span>Order History</span>
+                    <strong><a href="orders.html" style="color: var(--color-caramel); text-decoration: underline;">View Orders &amp; Live Tracking &rarr;</a></strong>
                 </div>
             </div>
 
